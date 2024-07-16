@@ -1,10 +1,12 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserLink from "./components/UserLink";
-import Icons from "./components/Icons";
-import { useCardItemInputs } from "./customHooks/useCardItemInputs"
+import { useCardItemInputs } from "./customHooks/useCardItemInputs";
+import AddContacts from "./components/AddContacts";
+import { QR } from "./components/QR";
 
 function App() {
+
   const {
     data,
     firstName,
@@ -21,9 +23,9 @@ function App() {
     skype,
     github,
     pinterest,
-    spotify
+    spotify,
   } = useCardItemInputs();
-  console.log(data);
+
 
   return (
     <div
@@ -52,14 +54,26 @@ function App() {
 
         {/* Name section */}
         <section className="mb-4" style={{ color: "#fff" }}>
-          <h2 className="mb-4">{firstName || "Loading..."} {lastName || "Loading..."}</h2>
+          <h2 className="mb-4">
+            {firstName || "Loading..."} {lastName || "Loading..."}
+          </h2>
           <h3 className="mb-4">{position || "Loading..."}</h3>
         </section>
 
+        {/* Icons section */}
+        <section className="my-4">
+          <QR />
+          <AddContacts />
+        </section>
+
+        
+
         {/* Links section */}
-        <section className="d-grid gap-3 col-12 col-md-6 mx-auto">
+        <section className="d-grid gap-3 col-10 col-md-6 mx-auto">
           <UserLink
-            background={"linear-gradient(45deg, #D62976, #E1306C, #F77737, #FCAF45, #FCAF45)"}
+            background={
+              "linear-gradient(45deg, #D62976, #E1306C, #F77737, #FCAF45, #FCAF45)"
+            }
             text={"Instagram"}
             link={instagram}
             icon={"fab fa-instagram"}
@@ -124,21 +138,6 @@ function App() {
             link={spotify}
             icon={"fab fa-spotify"}
           />
-        </section>
-
-        {/* Icons section */}
-        <section className="mt-4">
-          <Icons link={instagram} icon={"fab fa-instagram"}/>
-          <Icons link={facebook} icon={"fab fa-facebook"}/>
-          <Icons link={twitter} icon={"fab fa-twitter"}/>
-          <Icons link={whatsapp} icon={"fab fa-whatsapp"}/>
-          <Icons link={viber} icon={"fab fa-viber"}/>
-          <Icons link={linkedin} icon={"fab fa-linkedin"}/>
-          <Icons link={tiktok} icon={"fab fa-tiktok"}/>
-          <Icons link={skype} icon={"fab fa-skype"}/>
-          <Icons link={github} icon={"fab fa-github"}/>
-          <Icons link={pinterest} icon={"fab fa-pinterest"}/>
-          <Icons link={spotify} icon={"fab fa-spotify"}/>
         </section>
       </div>
     </div>

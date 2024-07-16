@@ -9,6 +9,7 @@ const UserLink = ({ background, text, link, icon }) => {
         backgroundSize: "cover",
         color: "#fff",
         padding: "20px 10px",
+        fontSize: "24px",
         textAlign: "center",
         textDecoration: "none",
         borderRadius: "8px",
