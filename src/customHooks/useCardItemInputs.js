@@ -12,26 +12,28 @@ export const useCardItemInputs = () => {
     getData();
   }, []);
 
-  const getValueByName = (name) => {
-    return data?.data?.cardItemInputs.find(input => input.name === name)?.value;
+  const getValuesByName = (name) => {
+    return data?.data?.cardItemInputs
+      .filter(input => input.name === name)
+      .map(input => input.value) || [];
   };
 
   return {
     data,
-    firstName: getValueByName("Firstname"),
-    lastName: getValueByName("Lastname"),
-    position: getValueByName("Position"),
-    instagram: getValueByName("Instagram"),
-    facebook: getValueByName("Facebook"),
-    twitter: getValueByName("Twitter"),
-    whatsapp: getValueByName("Whatsapp"),
-    viber: getValueByName("Viber"),
-    email: getValueByName("Email"),
-    linkedin: getValueByName("Linkedin"),
-    tiktok: getValueByName("Tiktok"),
-    skype: getValueByName("Skype"),
-    github: getValueByName("Github"),
-    pinterest: getValueByName("Pinterest"),
-    spotify: getValueByName("Spotify"),
+    firstName: getValuesByName("Firstname"),
+    lastName: getValuesByName("Lastname"),
+    position: getValuesByName("Position"),
+    instagram: getValuesByName("Instagram"),
+    facebook: getValuesByName("Facebook"),
+    twitter: getValuesByName("Twitter"),
+    whatsapp: getValuesByName("Whatsapp"),
+    viber: getValuesByName("Viber"),
+    email: getValuesByName("Email"),
+    linkedin: getValuesByName("Linkedin"),
+    tiktok: getValuesByName("Tiktok"),
+    skype: getValuesByName("Skype"),
+    github: getValuesByName("Github"),
+    pinterest: getValuesByName("Pinterest"),
+    spotify: getValuesByName("Spotify"),
   };
 };

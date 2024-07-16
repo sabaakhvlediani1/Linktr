@@ -1,13 +1,13 @@
 import React from "react";
 
-const UserLink = ({ background, text, link, icon }) => {
+const UserLink = ({ background, text, link, icon,color }) => {
   return (
     <a
       href={link}
       style={{
         backgroundImage: `${background}`,
         backgroundSize: "cover",
-        color: "#fff",
+        color: color,
         padding: "20px 10px",
         fontSize: "24px",
         textAlign: "center",
