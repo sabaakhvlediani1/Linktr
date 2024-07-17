@@ -50,6 +50,9 @@ function App() {
           />
         </section>
 
+
+        
+
         {/* Name section */}
         <section className="mb-4" style={{ color: "#fff" }}>
           <h2 className="mb-4">
