@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchQRs } from "../api/Api";
+import { fetchQRs } from "../../api/Api";
 
 const AddContacts = () => {
   const [data, setData] = useState(null);
