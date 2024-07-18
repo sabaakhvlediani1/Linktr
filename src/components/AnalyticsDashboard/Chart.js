@@ -15,18 +15,19 @@ const MyChart = () => {
     datasets: [
       {
         label: "Views by Country",
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)",
-        borderWidth: 1,
-        hoverBackgroundColor: "rgba(75,192,192,0.4)",
-        hoverBorderColor: "rgba(75,192,192,1)",
+        backgroundColor: "#0190ff",
+        hoverBackgroundColor: "red",
+        hoverBorderColor: "red",
         data: countryViews.map((view) => view.viewCount),
-        barThickness: 30,
+        barThickness: 40,
       },
     ],
   };
 
   const options = {
+    indexAxis: 'x', // Horizontal bars
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
@@ -39,14 +40,18 @@ const MyChart = () => {
       <Col className="mb-3">
         <Card
           style={{
-            height: "300px",
+            height: "100%", // Ensure the Card fills its parent container
             background: "linear-gradient(to right, #101727 0%, #101727 100%)",
             color: "#fff",
-            padding: 0,
             boxShadow: "0 0 3px rgba(255, 255, 255, 0.5)",
+            paddingLeft:"1rem",
+            paddingRight:"1rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <div style={{ height: "100%", width: "100%" }}>
+          <div style={{ width: "100%", maxWidth: "100%" }}>
             <Bar data={data} options={options} />
           </div>
         </Card>

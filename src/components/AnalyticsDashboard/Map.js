@@ -5,6 +5,7 @@ import { dashboardData } from "../../api/Api";
 import { renderToStaticMarkup } from "react-dom/server";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { divIcon } from "leaflet";
+import 'esri-leaflet';
 
 const countryData = dashboardData.data.countryViews;
 
@@ -40,8 +41,8 @@ const Map = () => {
             style={{ height: "100%", width: "100%" }}
           >
             <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://server.arcgisonline.com/arcgis/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+              attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             />
             {countryData.map((country, idx) => (
               <Marker

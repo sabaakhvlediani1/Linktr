@@ -50,6 +50,25 @@ export const dashboardData = {
         countryCode: "VN",
         coordinates: [14.0583, 108.2772]
       },
+      {
+        countryName: "United States",
+        viewCount: 320,
+        countryCode: "US",
+        coordinates: [37.0902, -95.7129]
+      },
+      {
+        countryName: "Germany",
+        viewCount: 210,
+        countryCode: "DE",
+        coordinates: [51.1657, 10.4515]
+      },
+      {
+        countryName: "Japan",
+        viewCount: 180,
+        countryCode: "JP",
+        coordinates: [36.2048, 138.2529]
+      },
+      
     ],
     cityViews: [
       {
@@ -65,3 +84,4 @@ export const dashboardData = {
   errorCode: 0,
   errors: null,
 };
+

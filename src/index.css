@@ -6,7 +6,7 @@
 body {
   scrollbar-width: thin; 
   scrollbar-color: #888 #111; 
-  background: linear-gradient(to right, #010916 0%, #010916 100%);
+  /* background: linear-gradient(to right, #010916 0%, #010916 100%); */
 }
 
 
