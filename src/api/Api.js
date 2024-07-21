@@ -1,3 +1,6 @@
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJmOWEwMmU1MC0xYzAwLTRlZWYtYjE5OC1mMGY4YjgxYjI4MDciLCJSb2xlIjoiVXNlciIsImV4cCI6MTcyMTQ5MzA5NywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI4Ni8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3Mjg2LyJ9.BMjLYpErPmMIG1ynDIlkKgr07YkaKzOf49f49DrSKWM";
+
 export const fetchData = async () => {
   try {
     const response = await fetch(
@@ -42,33 +45,32 @@ export const dashboardData = {
         countryName: "Georgia",
         viewCount: 543,
         countryCode: "GE",
-        coordinates: [42.3154, 43.3569]
+        coordinates: [42.3154, 43.3569],
       },
       {
         countryName: "Vietnam",
         viewCount: 2,
         countryCode: "VN",
-        coordinates: [14.0583, 108.2772]
+        coordinates: [14.0583, 108.2772],
       },
       {
         countryName: "United States",
         viewCount: 320,
         countryCode: "US",
-        coordinates: [37.0902, -95.7129]
+        coordinates: [37.0902, -95.7129],
       },
       {
         countryName: "Germany",
         viewCount: 210,
         countryCode: "DE",
-        coordinates: [51.1657, 10.4515]
+        coordinates: [51.1657, 10.4515],
       },
       {
         countryName: "Japan",
         viewCount: 180,
         countryCode: "JP",
-        coordinates: [36.2048, 138.2529]
+        coordinates: [36.2048, 138.2529],
       },
-      
     ],
     cityViews: [
       {
@@ -85,3 +87,42 @@ export const dashboardData = {
   errors: null,
 };
 
+export const GetCards = async () => {
+  try {
+    const response = await fetch(
+      "https://testing.api.addme.ge/api/Card/GetCards",
+      {
+        method: "GET", // or 'POST', 'PUT', etc.
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+export const GetInfo = async () => {
+  try {
+    const response = await fetch(
+      "https://testing.api.addme.ge/api/User/GetProfileData",
+      {
+        method: "GET", // or 'POST', 'PUT', etc.
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
