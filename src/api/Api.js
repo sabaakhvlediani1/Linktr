@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiJmOWEwMmU1MC0xYzAwLTRlZWYtYjE5OC1mMGY4YjgxYjI4MDciLCJSb2xlIjoiVXNlciIsImV4cCI6MTcyMTQ5MzA5NywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI4Ni8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3Mjg2LyJ9.BMjLYpErPmMIG1ynDIlkKgr07YkaKzOf49f49DrSKWM";
 
@@ -126,3 +127,37 @@ export const GetInfo = async () => {
     throw error;
   }
 };
+
+
+
+
+
+
+
+const useFetchUserData = (currentPage) => {
+  const [users, setUsers] = useState([]);
+  //Total Users
+  const [total, setTotal] = useState(0);
+
+  const fetchUserData = async (page) => {
+    try {
+      const skip = (page - 1) * 30;
+      const response = await fetch(
+        `https://dummyjson.com/users?skip=${skip}&limit=30`
+      );
+      const data = await response.json();
+      setUsers(data.users);
+      setTotal(data.total);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData(currentPage);
+  }, [currentPage]);
+
+  return { users, total };
+};
+
+export default useFetchUserData;

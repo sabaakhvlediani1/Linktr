@@ -3,6 +3,9 @@ import CardComponent from "./components/UserCard/CardComponent";
 import AnalyticsDashboard from "./components/AnalyticsDashboard/AnalyticsDashboard";
 import Chart from "./components/AnalyticsDashboard/Chart";
 import ContactForm from "./components/ContactForm/ContactForm";
+import UsersPage from "./components/Pagination/UsersPage";
+
+
 
 
 
@@ -11,7 +14,8 @@ function App() {
     <>
       {/* <CardComponent /> */}
       {/* <AnalyticsDashboard /> */}
-      <ContactForm />
+      {/* <ContactForm /> */}
+      {<UsersPage/>}
     </>
   );
 }
