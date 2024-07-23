@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const TableComponent = ({ users }) => {
+const TableComponent = ({ filteredUsers }) => {
   return (
     <Table striped="columns">
       <thead>
@@ -12,10 +12,11 @@ const TableComponent = ({ users }) => {
           <th>Username</th>
           <th>Email</th>
           <th>Phone</th>
+          <th>Gender</th>
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
+        {filteredUsers.map((user) => (
           <tr key={user.id}>
             <td>{user.id}</td>
             <td>{user.firstName}</td>
@@ -23,6 +24,7 @@ const TableComponent = ({ users }) => {
             <td>{user.username}</td>
             <td>{user.email}</td>
             <td>{user.phone}</td>
+            <td>{user.gender}</td>
           </tr>
         ))}
       </tbody>

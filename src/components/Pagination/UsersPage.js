@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Container, InputGroup, Form } from "react-bootstrap";
+import {
+  Container,
+  InputGroup,
+  Form,
+  DropdownButton,
+  Col,
+  Row,
+  Dropdown,
+} from "react-bootstrap";
 
 import PaginationComponent from "./PaginationComponent";
 import useFetchUserData from "../../api/Api";
@@ -9,6 +17,7 @@ const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [input, setInput] = useState("");
   const { users, total } = useFetchUserData(currentPage);
+  const [gender, setGender] = useState("All");
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -16,16 +25,18 @@ const UsersPage = () => {
 
   const totalPages = Math.ceil(total / 30);
 
-
-  // Filter Logic
-  const filteredUsers = users.filter(
-    (user) =>
-      user.firstName.toLowerCase().includes(input.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(input.toLowerCase()) ||
-      user.username.toLowerCase().includes(input.toLowerCase()) ||
-      user.email.toLowerCase().includes(input.toLowerCase()) ||
-      user.phone.toLowerCase().includes(input.toLowerCase())
-  );
+  // ორმაგი ფილტრი. პირველი ფილტრავს სერჩ ინფუთს, მეორე ფილტრი თუ gender სტეიტი არ არის "All" გაფილტრავს დროპდაუნიდან შერჩეული ჯენდერის მიხედვით.
+  // ფილტრებს შეუძლიათ მუშაობა ერთმენეთთან პარალელურად.
+  const filteredUsers = users
+    .filter(
+      (user) =>
+        user.firstName.toLowerCase().includes(input.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(input.toLowerCase()) ||
+        user.username.toLowerCase().includes(input.toLowerCase()) ||
+        user.email.toLowerCase().includes(input.toLowerCase()) ||
+        user.phone.toLowerCase().includes(input.toLowerCase())
+    )
+    .filter((user) => gender === "All" || user.gender.toLowerCase() === gender.toLowerCase());
 
   return (
     <>
@@ -37,7 +48,7 @@ const UsersPage = () => {
           marginTop: "100px",
         }}
       >
-        <InputGroup
+        <Row
           className="mb-3"
           style={{
             width: "100%",
@@ -46,11 +57,26 @@ const UsersPage = () => {
             paddingRight: "20px",
           }}
         >
-          <Form.Control
-            placeholder="Search"
-            onChange={(e) => setInput(e.target.value)}
-          />
-        </InputGroup>
+          <Col>
+            <InputGroup>
+              <Form.Control
+                placeholder="Search"
+                onChange={(e) => setInput(e.target.value)}
+              />
+            </InputGroup>
+          </Col>
+          <Col>
+            <DropdownButton
+              id="dropdown-basic-button"
+              title={gender}
+              onSelect={(e) => setGender(e)}
+            >
+              <Dropdown.Item eventKey="All">All</Dropdown.Item>
+              <Dropdown.Item eventKey="Male">Male</Dropdown.Item>
+              <Dropdown.Item eventKey="Female">Female</Dropdown.Item>
+            </DropdownButton>
+          </Col>
+        </Row>
       </div>
       <Container
         className="d-flex flex-column align-items-center justify-content-between"
@@ -66,7 +92,7 @@ const UsersPage = () => {
           minHeight: "500px",
         }}
       >
-        <TableComponent users={filteredUsers} />
+        <TableComponent filteredUsers={filteredUsers} />
         <PaginationComponent
           totalPages={totalPages}
           currentPage={currentPage}
